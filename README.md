@@ -1,8 +1,14 @@
 # Sistema Web de Agendamento com Perfis de Usuário
 
+Bem-vindo ao sistema que permite agendamentos para Clientes, Atendentes e Administradores...
+<p float="left">
+<img src="img/imagem-inicio.jpeg" width="450" />
+<img src="img/imagem-controle.jpeg" width="448" />
+</p>
+
 ## 🎯 Objetivo
 
-Desenvolver um sistema web completo de agendamentos que permita a interação de diferentes perfis de usuários: **Clientes, Atendentes e Administradores**. O sistema possibilita o agendamento, gerenciamento e acompanhamento de compromissos, com **autenticação de acesso, controle de permissões**.
+Atividade de pratica para Desenvolver um sistema web completo de agendamentos que permita a interação de diferentes perfis de usuários: **Clientes, Atendentes e Administradores**. O sistema possibilita o agendamento, gerenciamento e acompanhamento de compromissos, com **autenticação de acesso, controle de permissões**.
 
 ---
 
