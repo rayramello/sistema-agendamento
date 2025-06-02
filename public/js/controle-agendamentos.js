@@ -1,0 +1,103 @@
+async function carregarUsuarios() {
+    try {
+      const res = await fetch('/usuarios');
+      if (!res.ok) throw new Error('Erro ao buscar usuários');
+      const usuarios = await res.json();
+      const tbody = document.querySelector('#tabela-usuarios tbody');
+      tbody.innerHTML = '';
+  
+      usuarios.forEach(u => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${u.id}</td>
+          <td><input type="text" value="${u.nome}" data-id="${u.id}" data-campo="nome"></td>
+          <td><input type="email" value="${u.email}" data-id="${u.id}" data-campo="email"></td>
+          <td><input type="password" value="${u.senha}" data-id="${u.id}" data-campo="senha"></td>
+          <td><button data-id="${u.id}" class="btn-salvar-usuario">Salvar</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+  
+      // Remover event listeners anteriores antes de adicionar para evitar duplicação
+      const botoesSalvar = document.querySelectorAll('.btn-salvar-usuario');
+      botoesSalvar.forEach(btn => {
+        btn.replaceWith(btn.cloneNode(true)); // clona para limpar event listeners
+      });
+  
+      // Re-obter os botões clonados (sem listeners antigos)
+      document.querySelectorAll('.btn-salvar-usuario').forEach(btn => {
+        btn.addEventListener('click', async e => {
+          const id = e.target.getAttribute('data-id');
+          const linha = e.target.closest('tr');
+          const nome = linha.querySelector('input[data-campo="nome"]').value.trim();
+          const email = linha.querySelector('input[data-campo="email"]').value.trim();
+          const senha = linha.querySelector('input[data-campo="senha"]').value.trim();
+  
+          if (!nome || !email || !senha) {
+            alert('Preencha todos os campos');
+            return;
+          }
+  
+          try {
+            const res = await fetch(`/usuarios/${id}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ nome, email, senha })
+            });
+  
+            if (!res.ok) {
+              const data = await res.json();
+              throw new Error(data.erro || 'Erro ao atualizar usuário');
+            }
+  
+            alert('Usuário atualizado com sucesso!');
+            carregarUsuarios();
+          } catch (err) {
+            alert(err.message);
+          }
+        });
+      });
+    } catch (err) {
+      alert('Erro ao buscar usuários');
+      console.error(err);
+    }
+  }
+  
+  async function carregarAgendamentos() {
+    try {
+      const res = await fetch('/agendamentos');
+      if (!res.ok) throw new Error('Erro ao buscar agendamentos');
+      const agendamentos = await res.json();
+      const tbody = document.querySelector('#tabela-agendamentos tbody');
+      tbody.innerHTML = '';
+  
+      agendamentos.forEach(a => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${a.id}</td>
+          <td>${a.usuario}</td>
+          <td>${a.data_hora}</td>
+          <td>${a.descricao}</td>
+          <td>${a.status}</td>
+          <td>
+            <select>
+              <option ${a.status === 'Pendente' ? 'selected' : ''}>Pendente</option>
+              <option ${a.status === 'Confirmado' ? 'selected' : ''}>Confirmado</option>
+              <option ${a.status === 'Cancelado' ? 'selected' : ''}>Cancelado</option>
+            </select>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch (err) {
+      alert('Erro ao buscar agendamentos');
+      console.error(err);
+    }
+  }
+  
+  // Executar após o DOM carregar completamente
+  window.addEventListener('DOMContentLoaded', () => {
+    carregarUsuarios();
+    carregarAgendamentos();
+  });
+  

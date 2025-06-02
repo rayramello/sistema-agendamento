@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Página Inicial</title>
+   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #9834db;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #cc82ee;
+      color: white;
+      border-color: #7329b9;
+    }
+
+    /* Layout responsivo em telas maiores */
+    @media (min-width: 600px) {
+      nav {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      nav a {
+        margin: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Bem-vindo ao Sistema de Agendamentos</h1>
+  <nav>
+    <a href="/agendamento.html">Meus Agendamentos</a> |
+    <a href="controle-completo.html">Controle Completo de Usuários e Agendamentos</a> |
+
+    <a href="controle-agendamentos.html">Painel de Controle de Agendamentos</a> |
+
+    <a href="/logout">Sair</a>
+  </nav>
+</body>
+</html>

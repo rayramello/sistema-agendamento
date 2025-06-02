@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BRno">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Agendamentos</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 8px;
+      text-align: left;
+    }
+    body {
+      background-color: #f4f6f8;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lista de Agendamentos</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Usuário</th>
+        <th>Data e Hora</th>
+        <th>Descrição</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="lista-agendamentos"></tbody>
+  </table>
+
+  <h2>Novo Agendamento</h2>
+  <form id="form-agendamentos">
+    <!-- Removido o input usuario_id, porque o backend usa a sessão -->
+    <input type="datetime-local" id="data_hora" required />
+    <input type="text" id="descricao" placeholder="Descrição" required />
+    <button type="submit">Agendar</button>
+  </form>
+
+  <script src="js/agendamento.js"></script>
+</body>
+</html>
+,,,,,
